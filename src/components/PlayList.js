@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+
+
 export default class PlayList extends Component {
   constructor(props) {
     super(props);
@@ -22,32 +24,35 @@ export default class PlayList extends Component {
       return results.json();
     }).then(data => {
       this.setState({songs: data});
-      console.log("state", this.state.songs);
     })
   }
   render() {
     //NEED TO IMPORT PLAYLISTITEM COMPONENT AND PASS PROPS FROM THIS COMPONENT TO IT FOR RENDER.
-    console.log(this.state, "here");
     let songs = this.state.songs.map(song => {
       return (
         <li className="list-group-item" key={song._id}>
           <ul>
-            <li>Artist/Band: {song.songArtist}</li>
-            <li>Title: {song.songTitle}</li>
-            <li>Notes: {song.songNotes}</li>
+            <li><span className="row-title">User:</span> {song.userName}</li>
+            <li><span className="row-title">Artist/Band:</span> {song.songArtist}</li>
+            <li><span className="row-title">Title:</span> {song.songTitle}</li>
+            <li><span className="row-title">Notes:</span> {song.songNotes}</li>
+
           </ul>
         </li>
       )
     })
 
     return (
-      <div className="col-md-6 d-inline-block">
-        <button className="btn btn-success" onClick={this.fetchData}>Click for Updates
-        </button>
-        <ul className="list-group">
-          {songs}
-        </ul>
-      </div>
+
+        <div className="col-md-6 d-inline-block right-side">
+          <button className="btn btn-success update-button" onClick={this.fetchData}>Update List
+          </button>
+          <ul className="list-group">
+            {songs}
+          </ul>
+        </div>
+
+
     )
   }
 }

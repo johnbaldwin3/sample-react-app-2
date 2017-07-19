@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import PlayList from './PlayList';
+
 export default class PlayListForm extends Component {
   constructor(props) {
     super(props);
@@ -8,6 +10,7 @@ export default class PlayListForm extends Component {
       songTitle: '',
       songArtist: '',
       songNotes: '',
+      userName: '',
     }
   }
   handleSongArtist = (e) => {
@@ -22,9 +25,13 @@ export default class PlayListForm extends Component {
     e.preventDefault();
     this.setState({songNotes: e.target.value});
   }
+  handleUserName = (e) => {
+    e.preventDefault();
+    this.setState({userName: e.target.value})
+  }
   storeSong = (e) => {
     e.preventDefault();
-    this.setState({songTitle: e.target.value, songArtist: e.target.value, songNotes: e.target.value});
+    this.setState({userName: e.target.value, songTitle: e.target.value, songArtist: e.target.value, songNotes: e.target.value});
     let listItem = JSON.stringify(this.state);
 
     fetch("https://tiny-lasagna-server.herokuapp.com/collections/playlisting", {
@@ -37,44 +44,58 @@ export default class PlayListForm extends Component {
   }
 ).then(response => {
   console.log(response, "yay");
+
 }).catch(err => {
   console.log(err, "boo!");
 })
-  this.setState({songNotes: '', songArtist: '', songTitle:''});
+  this.setState({userName: '', songNotes: '', songArtist: '', songTitle:''});
   }
   render() {
     return (
-      <div className="col-md-6 d-inline-block">
-        <form onSubmit={this.storeSong}>
-          <div className="form-group">
-            <label htmlFor="artist"> Artist/Band: </label>
-            <input  onChange={this.handleSongArtist}
-              type="text"
-              className="form-control"
-              id="artist"
-              placeholder="Artist or Band Name"
-              value={this.state.value}/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="song">Song Title:</label>
-            <input
-              onChange={this.handleSongTitle}
-              type="text"
-              className="form-control"
-              id="song"
-              placeholder="Song Title"
-              value={this.state.value}/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="notes">Notes about Song:</label>
-            <textarea onChange={this.handleSongNotes}
-              className="form-control"
-              id="notes"
-              rows="3" value={this.state.value}/>
-          </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
+      <div className="row">
+        <div className="col-md-6 d-inline-block left-side">
+          <form onSubmit={this.storeSong}>
+            <div className="form-group">
+              <label htmlFor="user"> User Name: </label>
+              <input  onChange={this.handleUserName}
+                type="text"
+                className="form-control"
+                id="user"
+                placeholder="Name or User Name"
+                value={this.state.value}/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="artist"> Artist/Band: </label>
+              <input  onChange={this.handleSongArtist}
+                type="text"
+                className="form-control"
+                id="artist"
+                placeholder="Artist or Band Name"
+                value={this.state.value}/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="song">Song Title:</label>
+              <input
+                onChange={this.handleSongTitle}
+                type="text"
+                className="form-control"
+                id="song"
+                placeholder="Song Title"
+                value={this.state.value}/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="notes">Notes about Song:</label>
+              <textarea onChange={this.handleSongNotes}
+                className="form-control"
+                id="notes"
+                rows="3" value={this.state.value}/>
+            </div>
+            <button type="submit" className="btn btn-primary ">Submit</button>
+          </form>
+        </div>
+        <PlayList />
       </div>
+
     );
   }
 }

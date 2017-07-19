@@ -5,7 +5,7 @@ import '../styles/App.css';
 //import components
 import NavBar from './NavBar';
 import PlayListForm from './PlayListForm';
-import PlayList from './PlayList';
+//import PlayList from './PlayList';
 
 class App extends Component {
   render() {
@@ -13,7 +13,6 @@ class App extends Component {
       <div className="App">
         <NavBar />
         <PlayListForm />
-        <PlayList />
       </div>
     );
   }
