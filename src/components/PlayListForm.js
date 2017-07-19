@@ -62,7 +62,7 @@ export default class PlayListForm extends Component {
                 className="form-control"
                 id="user"
                 placeholder="Name or User Name"
-                value={this.state.value}/>
+                value={this.state.userName}/>
             </div>
             <div className="form-group">
               <label htmlFor="artist"> Artist/Band: </label>
@@ -71,7 +71,7 @@ export default class PlayListForm extends Component {
                 className="form-control"
                 id="artist"
                 placeholder="Artist or Band Name"
-                value={this.state.value}/>
+                value={this.state.songArtist}/>
             </div>
             <div className="form-group">
               <label htmlFor="song">Song Title:</label>
@@ -81,14 +81,14 @@ export default class PlayListForm extends Component {
                 className="form-control"
                 id="song"
                 placeholder="Song Title"
-                value={this.state.value}/>
+                value={this.state.songTitle}/>
             </div>
             <div className="form-group">
               <label htmlFor="notes">Notes about Song:</label>
               <textarea onChange={this.handleSongNotes}
                 className="form-control"
                 id="notes"
-                rows="3" value={this.state.value}/>
+                rows="3" value={this.state.songNotes}/>
             </div>
             <button type="submit" className="btn btn-primary ">Submit</button>
           </form>
