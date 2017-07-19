@@ -6,14 +6,23 @@ export default class PlayListItem extends Component {
 
   }
   render() {
+
+    let songs = this.props.songs.map(song => {
+      return (
+        <li className="list-group-item" key={song._id}>
+          <ul>
+            <li><span className="row-title">User:</span> {song.userName}</li>
+            <li><span className="row-title">Artist/Band:</span> {song.songArtist}</li>
+            <li><span className="row-title">Title:</span> {song.songTitle}</li>
+            <li><span className="row-title">Notes:</span> {song.songNotes}</li>
+          </ul>
+        </li>
+      );
+    })
     return (
-      <li className="list-group-item" key={song._id}>
-        <ul>
-          <li>Artist/Band: {song.songArtist}</li>
-          <li>Title: {song.songTitle}</li>
-          <li>Notes: {song.songNotes}</li>
-        </ul>
-      </li>
+      <ul className="list-group">
+        {songs}
+      </ul>
     );
   }
 }
