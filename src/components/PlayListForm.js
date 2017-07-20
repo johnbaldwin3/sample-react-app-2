@@ -29,7 +29,7 @@ export default class PlayListForm extends Component {
     e.preventDefault();
     this.setState({userName: e.target.value})
   }
-  storeSong = (e) => {
+  addToList = (e) => {
     e.preventDefault();
     this.setState({userName: e.target.value, songTitle: e.target.value, songArtist: e.target.value, songNotes: e.target.value});
     let listItem = JSON.stringify(this.state);
@@ -54,7 +54,7 @@ export default class PlayListForm extends Component {
     return (
       <div className="row">
         <div className="col-md-6 d-inline-block left-side">
-          <form onSubmit={this.storeSong}>
+          <form onSubmit={this.addToList}>
             <div className="form-group">
               <label htmlFor="user"> User Name: </label>
               <input  onChange={this.handleUserName}

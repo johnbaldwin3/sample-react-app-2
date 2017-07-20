@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 export default class PlayListItem extends Component {
-  constructor(props){
-    super(props);
-
-  }
   render() {
 
     let songs = this.props.songs.map(song => {
